@@ -6,11 +6,8 @@ import PackageDescription
 let package = Package(
     name: "AdventOfCode",
     platforms: [.macOS(.v11)],
-    products: [
-        .executable(name: "AdventOfCode", targets: ["AdventOfCode"]),
-    ],
     dependencies: [
-        .package(url: "https://github.com/apple/swift-argument-parser", from: "0.5.0"),
+        .package(url: "https://github.com/apple/swift-argument-parser", from: "1.0.0"),
     ],
     targets: [
         .executableTarget(
