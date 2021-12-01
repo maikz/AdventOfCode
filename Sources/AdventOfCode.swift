@@ -8,24 +8,38 @@ struct AdventOfCode: ParsableCommand {
     @Option(name: .shortAndLong, help: "The challenge year. Uses the current year by default.")
     var year: UInt = Date().currentYearInEST
 
-    @Option(name: .shortAndLong, help: "The challenge day. Uses the current day by default")
+    @Option(name: .shortAndLong, help: "The challenge day. Uses the current day by default.")
     var day: UInt8 = Date().currentDayInEST
+
+    @Option(name: .shortAndLong, help: "Your session cookie on https://adventofcode.com. This is needed to download your personal puzzle inputs.")
+    var session: String
 
 
     mutating func run() throws {
         print("Running day \(self.day) of year \(self.year)...")
         print("")
 
-        switch self.year {
-            case 2015: try Challenges2015.run(day: self.day)
-            case 2016: try Challenges2016.run(day: self.day)
-            case 2017: try Challenges2017.run(day: self.day)
-            case 2018: try Challenges2018.run(day: self.day)
-            case 2019: try Challenges2019.run(day: self.day)
-            case 2020: try Challenges2020.run(day: self.day)
-            case 2021: try Challenges2021.run(day: self.day)
-            default: throw ValidationError("No challenges available for this year.")
+        Task { [year = self.year, day = self.day, session = self.session] in
+            do {
+                let input = try await ChallengeInput(year: year, day: day, session: session)
+                switch year {
+                    case 2015: try await Challenges2015.run(day: day, input: input)
+                    case 2016: try await Challenges2016.run(day: day, input: input)
+                    case 2017: try await Challenges2017.run(day: day, input: input)
+                    case 2018: try await Challenges2018.run(day: day, input: input)
+                    case 2019: try await Challenges2019.run(day: day, input: input)
+                    case 2020: try await Challenges2020.run(day: day, input: input)
+                    case 2021: try await Challenges2021.run(day: day, input: input)
+                    default: throw ValidationError("No challenges available for this year.")
+                }
+            } catch {
+                Self.exit(withError: error)
+            }
+            Self.exit()
         }
+
+        // keep running while work happens async
+        RunLoop.main.run()
     }
 
 }
