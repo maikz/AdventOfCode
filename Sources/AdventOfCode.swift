@@ -5,6 +5,10 @@ import Foundation
 @main
 struct AdventOfCode: ParsableCommand {
 
+    enum RuntimeError: Error {
+        case parsingError
+    }
+
     @Option(name: .shortAndLong, help: "The challenge year. Uses the current year by default.")
     var year: UInt = Date().currentYearInEST
 
