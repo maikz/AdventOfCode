@@ -6,6 +6,7 @@ struct ChallengeInput {
 
     let data: Data
 
+    /// Fetches the puzzle input from the server and caches it locally for later access.
     init(year: UInt, day: UInt8, session: String) async throws {
         let fileManager = FileManager.default
         // check if we have already downloaded the data
@@ -28,12 +29,17 @@ struct ChallengeInput {
         }
     }
 
+    /// Init with given (test) data.
+    init(data: Data) {
+        self.data = data
+    }
+
     func asString() -> String? {
         return String(data: self.data, encoding: .utf8)
     }
 
-    func lines() -> LazyMapSequence<LazySequence<[String.SubSequence]>.Elements, String>? {
-        return self.asString()?.split(separator: "\n").lazy.map(String.init)
+    func lines() -> [String]? {
+        return self.asString()?.split(separator: "\n").map(String.init)
     }
 
 }

@@ -1,6 +1,6 @@
 extension Challenges2021 {
 
-    static func runDay3(input: ChallengeInput) async throws {
+    @discardableResult static func runDay3(input: ChallengeInput) async throws -> ChallengeResult {
         let linesAsNumbers = input.lines()!.map({ String($0).map({ Int(String($0))! }) })
 
         let sums = linesAsNumbers.dropFirst().reduce(linesAsNumbers.first!) { result, next -> [Int] in
@@ -38,6 +38,8 @@ extension Challenges2021 {
         let co2Value = UInt(remainingCO2Values.first!.map(String.init).joined(), radix: 2)!
 
         print("Part 2: The life support rating of the submarine is \(oxygenValue * co2Value).")
+
+        return (part1: "\(gammaRate * epsilonRate)", part2: "\(oxygenValue * co2Value)")
     }
 
 }

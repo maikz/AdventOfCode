@@ -4,31 +4,36 @@ import ArgumentParser
 /// Helper type for running specific daily challenges of the implementing year.
 protocol ChallengeYear {
 
-    static func runDay1(input: ChallengeInput) async throws
-    static func runDay2(input: ChallengeInput) async throws
-    static func runDay3(input: ChallengeInput) async throws
-    static func runDay4(input: ChallengeInput) async throws
-    static func runDay5(input: ChallengeInput) async throws
-    static func runDay6(input: ChallengeInput) async throws
-    static func runDay7(input: ChallengeInput) async throws
-    static func runDay8(input: ChallengeInput) async throws
-    static func runDay9(input: ChallengeInput) async throws
-    static func runDay10(input: ChallengeInput) async throws
-    static func runDay11(input: ChallengeInput) async throws
-    static func runDay12(input: ChallengeInput) async throws
-    static func runDay13(input: ChallengeInput) async throws
-    static func runDay14(input: ChallengeInput) async throws
-    static func runDay15(input: ChallengeInput) async throws
-    static func runDay16(input: ChallengeInput) async throws
-    static func runDay17(input: ChallengeInput) async throws
-    static func runDay18(input: ChallengeInput) async throws
-    static func runDay19(input: ChallengeInput) async throws
-    static func runDay20(input: ChallengeInput) async throws
-    static func runDay21(input: ChallengeInput) async throws
-    static func runDay22(input: ChallengeInput) async throws
-    static func runDay23(input: ChallengeInput) async throws
-    static func runDay24(input: ChallengeInput) async throws
-    static func runDay25(input: ChallengeInput) async throws
+    /// Return type for all challenge runs.
+    /// Uses `String` as generic return type since we don't know the results of the specific challenge,
+    /// but the AoC website always has a text input field for the result.
+    typealias ChallengeResult = (part1: String, part2: String)
+
+    @discardableResult static func runDay1(input: ChallengeInput) async throws -> ChallengeResult
+    @discardableResult static func runDay2(input: ChallengeInput) async throws -> ChallengeResult
+    @discardableResult static func runDay3(input: ChallengeInput) async throws -> ChallengeResult
+    @discardableResult static func runDay4(input: ChallengeInput) async throws -> ChallengeResult
+    @discardableResult static func runDay5(input: ChallengeInput) async throws -> ChallengeResult
+    @discardableResult static func runDay6(input: ChallengeInput) async throws -> ChallengeResult
+    @discardableResult static func runDay7(input: ChallengeInput) async throws -> ChallengeResult
+    @discardableResult static func runDay8(input: ChallengeInput) async throws -> ChallengeResult
+    @discardableResult static func runDay9(input: ChallengeInput) async throws -> ChallengeResult
+    @discardableResult static func runDay10(input: ChallengeInput) async throws -> ChallengeResult
+    @discardableResult static func runDay11(input: ChallengeInput) async throws -> ChallengeResult
+    @discardableResult static func runDay12(input: ChallengeInput) async throws -> ChallengeResult
+    @discardableResult static func runDay13(input: ChallengeInput) async throws -> ChallengeResult
+    @discardableResult static func runDay14(input: ChallengeInput) async throws -> ChallengeResult
+    @discardableResult static func runDay15(input: ChallengeInput) async throws -> ChallengeResult
+    @discardableResult static func runDay16(input: ChallengeInput) async throws -> ChallengeResult
+    @discardableResult static func runDay17(input: ChallengeInput) async throws -> ChallengeResult
+    @discardableResult static func runDay18(input: ChallengeInput) async throws -> ChallengeResult
+    @discardableResult static func runDay19(input: ChallengeInput) async throws -> ChallengeResult
+    @discardableResult static func runDay20(input: ChallengeInput) async throws -> ChallengeResult
+    @discardableResult static func runDay21(input: ChallengeInput) async throws -> ChallengeResult
+    @discardableResult static func runDay22(input: ChallengeInput) async throws -> ChallengeResult
+    @discardableResult static func runDay23(input: ChallengeInput) async throws -> ChallengeResult
+    @discardableResult static func runDay24(input: ChallengeInput) async throws -> ChallengeResult
+    @discardableResult static func runDay25(input: ChallengeInput) async throws -> ChallengeResult
 
 }
 
@@ -47,31 +52,31 @@ enum Challenges2021: ChallengeYear {}
 // Some default implementations that are used when a challenge is not yet implemented.
 extension ChallengeYear {
 
-    static func runDay1(input: ChallengeInput) async throws { print("Not yet implemented."); throw ExitCode.failure }
-    static func runDay2(input: ChallengeInput) async throws { print("Not yet implemented."); throw ExitCode.failure }
-    static func runDay3(input: ChallengeInput) async throws { print("Not yet implemented."); throw ExitCode.failure }
-    static func runDay4(input: ChallengeInput) async throws { print("Not yet implemented."); throw ExitCode.failure }
-    static func runDay5(input: ChallengeInput) async throws { print("Not yet implemented."); throw ExitCode.failure }
-    static func runDay6(input: ChallengeInput) async throws { print("Not yet implemented."); throw ExitCode.failure }
-    static func runDay7(input: ChallengeInput) async throws { print("Not yet implemented."); throw ExitCode.failure }
-    static func runDay8(input: ChallengeInput) async throws { print("Not yet implemented."); throw ExitCode.failure }
-    static func runDay9(input: ChallengeInput) async throws { print("Not yet implemented."); throw ExitCode.failure }
-    static func runDay10(input: ChallengeInput) async throws { print("Not yet implemented."); throw ExitCode.failure }
-    static func runDay11(input: ChallengeInput) async throws { print("Not yet implemented."); throw ExitCode.failure }
-    static func runDay12(input: ChallengeInput) async throws { print("Not yet implemented."); throw ExitCode.failure }
-    static func runDay13(input: ChallengeInput) async throws { print("Not yet implemented."); throw ExitCode.failure }
-    static func runDay14(input: ChallengeInput) async throws { print("Not yet implemented."); throw ExitCode.failure }
-    static func runDay15(input: ChallengeInput) async throws { print("Not yet implemented."); throw ExitCode.failure }
-    static func runDay16(input: ChallengeInput) async throws { print("Not yet implemented."); throw ExitCode.failure }
-    static func runDay17(input: ChallengeInput) async throws { print("Not yet implemented."); throw ExitCode.failure }
-    static func runDay18(input: ChallengeInput) async throws { print("Not yet implemented."); throw ExitCode.failure }
-    static func runDay19(input: ChallengeInput) async throws { print("Not yet implemented."); throw ExitCode.failure }
-    static func runDay20(input: ChallengeInput) async throws { print("Not yet implemented."); throw ExitCode.failure }
-    static func runDay21(input: ChallengeInput) async throws { print("Not yet implemented."); throw ExitCode.failure }
-    static func runDay22(input: ChallengeInput) async throws { print("Not yet implemented."); throw ExitCode.failure }
-    static func runDay23(input: ChallengeInput) async throws { print("Not yet implemented."); throw ExitCode.failure }
-    static func runDay24(input: ChallengeInput) async throws { print("Not yet implemented."); throw ExitCode.failure }
-    static func runDay25(input: ChallengeInput) async throws { print("Not yet implemented."); throw ExitCode.failure }
+    @discardableResult static func runDay1(input: ChallengeInput) async throws -> ChallengeResult { print("Not yet implemented."); throw ExitCode.failure }
+    @discardableResult static func runDay2(input: ChallengeInput) async throws -> ChallengeResult { print("Not yet implemented."); throw ExitCode.failure }
+    @discardableResult static func runDay3(input: ChallengeInput) async throws -> ChallengeResult { print("Not yet implemented."); throw ExitCode.failure }
+    @discardableResult static func runDay4(input: ChallengeInput) async throws -> ChallengeResult { print("Not yet implemented."); throw ExitCode.failure }
+    @discardableResult static func runDay5(input: ChallengeInput) async throws -> ChallengeResult { print("Not yet implemented."); throw ExitCode.failure }
+    @discardableResult static func runDay6(input: ChallengeInput) async throws -> ChallengeResult { print("Not yet implemented."); throw ExitCode.failure }
+    @discardableResult static func runDay7(input: ChallengeInput) async throws -> ChallengeResult { print("Not yet implemented."); throw ExitCode.failure }
+    @discardableResult static func runDay8(input: ChallengeInput) async throws -> ChallengeResult { print("Not yet implemented."); throw ExitCode.failure }
+    @discardableResult static func runDay9(input: ChallengeInput) async throws -> ChallengeResult { print("Not yet implemented."); throw ExitCode.failure }
+    @discardableResult static func runDay10(input: ChallengeInput) async throws -> ChallengeResult { print("Not yet implemented."); throw ExitCode.failure }
+    @discardableResult static func runDay11(input: ChallengeInput) async throws -> ChallengeResult { print("Not yet implemented."); throw ExitCode.failure }
+    @discardableResult static func runDay12(input: ChallengeInput) async throws -> ChallengeResult { print("Not yet implemented."); throw ExitCode.failure }
+    @discardableResult static func runDay13(input: ChallengeInput) async throws -> ChallengeResult { print("Not yet implemented."); throw ExitCode.failure }
+    @discardableResult static func runDay14(input: ChallengeInput) async throws -> ChallengeResult { print("Not yet implemented."); throw ExitCode.failure }
+    @discardableResult static func runDay15(input: ChallengeInput) async throws -> ChallengeResult { print("Not yet implemented."); throw ExitCode.failure }
+    @discardableResult static func runDay16(input: ChallengeInput) async throws -> ChallengeResult { print("Not yet implemented."); throw ExitCode.failure }
+    @discardableResult static func runDay17(input: ChallengeInput) async throws -> ChallengeResult { print("Not yet implemented."); throw ExitCode.failure }
+    @discardableResult static func runDay18(input: ChallengeInput) async throws -> ChallengeResult { print("Not yet implemented."); throw ExitCode.failure }
+    @discardableResult static func runDay19(input: ChallengeInput) async throws -> ChallengeResult { print("Not yet implemented."); throw ExitCode.failure }
+    @discardableResult static func runDay20(input: ChallengeInput) async throws -> ChallengeResult { print("Not yet implemented."); throw ExitCode.failure }
+    @discardableResult static func runDay21(input: ChallengeInput) async throws -> ChallengeResult { print("Not yet implemented."); throw ExitCode.failure }
+    @discardableResult static func runDay22(input: ChallengeInput) async throws -> ChallengeResult { print("Not yet implemented."); throw ExitCode.failure }
+    @discardableResult static func runDay23(input: ChallengeInput) async throws -> ChallengeResult { print("Not yet implemented."); throw ExitCode.failure }
+    @discardableResult static func runDay24(input: ChallengeInput) async throws -> ChallengeResult { print("Not yet implemented."); throw ExitCode.failure }
+    @discardableResult static func runDay25(input: ChallengeInput) async throws -> ChallengeResult { print("Not yet implemented."); throw ExitCode.failure }
 
 
     /// Convenient helper for running the corresponding challenge for the given day.

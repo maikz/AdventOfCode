@@ -33,7 +33,7 @@ extension Challenges2021 {
     }
 
 
-    static func runDay2(input: ChallengeInput) async throws {
+    @discardableResult static func runDay2(input: ChallengeInput) async throws -> ChallengeResult {
         guard let instructions = input.lines()?.compactMap(Instruction.init) else {
             throw AdventOfCode.RuntimeError.parsingError
         }
@@ -46,7 +46,8 @@ extension Challenges2021 {
                 case .up(let steps): depth -= steps
             }
         }
-        print("Part 1: Horizontal = \(horizontal), Depth = \(depth) -> Solution = \(horizontal * depth)")
+        let part1Solution = "\(horizontal * depth)"
+        print("Part 1: Horizontal = \(horizontal), Depth = \(depth) -> Solution = \(part1Solution)")
 
         horizontal = 0; depth = 0; var aim = 0
         for instruction in instructions {
@@ -58,7 +59,10 @@ extension Challenges2021 {
                 case .up(let steps): aim -= steps
             }
         }
-        print("Part 2: Horizontal = \(horizontal), Depth = \(depth) -> Solution = \(horizontal * depth)")
+        let part2Solution = "\(horizontal * depth)"
+        print("Part 2: Horizontal = \(horizontal), Depth = \(depth) -> Solution = \(part2Solution)")
+
+        return (part1: part1Solution, part2: part2Solution)
     }
 
 }

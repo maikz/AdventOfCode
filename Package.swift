@@ -19,5 +19,10 @@ let package = Package(
             ],
             path: "Sources"
         ),
+        .testTarget(
+            name: "AdventOfCodeTests",
+            dependencies: ["AdventOfCode"],
+            path: "Tests"
+        ),
     ]
 )
