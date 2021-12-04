@@ -6,6 +6,7 @@ struct ChallengeInput {
 
     let data: Data
 
+    /// Fetches the puzzle input from the server and caches it locally for later access.
     init(year: UInt, day: UInt8, session: String) async throws {
         let fileManager = FileManager.default
         // check if we have already downloaded the data
@@ -26,6 +27,11 @@ struct ChallengeInput {
             try data.write(to: cachedFilePath)
             self.data = data
         }
+    }
+
+    /// Init with given (test) data.
+    init(data: Data) {
+        self.data = data
     }
 
     func asString() -> String? {
