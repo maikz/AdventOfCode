@@ -19,7 +19,9 @@ final class AdventOfCode2021Tests: XCTestCase {
             """.data(using: .utf8)!
         let input = ChallengeInput(data: data)
 
-        try await Challenges2021.runDay1(input: input)
+        let result = try await Challenges2021.runDay1(input: input)
+        XCTAssertEqual(result.part1, "7")
+        XCTAssertEqual(result.part2, "5")
     }
 
 }

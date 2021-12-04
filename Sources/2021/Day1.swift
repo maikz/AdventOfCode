@@ -1,7 +1,11 @@
+import ArgumentParser
+
+
 extension Challenges2021 {
 
-    static func runDay1(input: ChallengeInput) async throws {
-        print("Tomorrow...")
+    @discardableResult static func runDay1(input: ChallengeInput) async throws -> ChallengeResult {
+        print("Not yet implemented.")
+        throw ExitCode.failure
     }
 
 }
