@@ -38,8 +38,8 @@ struct ChallengeInput {
         return String(data: self.data, encoding: .utf8)
     }
 
-    func lines() -> LazyMapSequence<LazySequence<[String.SubSequence]>.Elements, String>? {
-        return self.asString()?.split(separator: "\n").lazy.map(String.init)
+    func lines() -> [String]? {
+        return self.asString()?.split(separator: "\n").map(String.init)
     }
 
 }
