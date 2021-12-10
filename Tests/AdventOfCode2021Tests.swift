@@ -164,4 +164,24 @@ final class AdventOfCode2021Tests: XCTestCase {
         XCTAssertEqual(result.part2, "1134")
     }
 
+    func testDay10() async throws {
+        let data = """
+            [({(<(())[]>[[{[]{<()<>>
+            [(()[<>])]({[<{<<[]>>(
+            {([(<{}[<>[]}>{[]{[(<()>
+            (((({<>}<{<{<>}{[]{[]{}
+            [[<[([]))<([[{}[[()]]]
+            [{[{({}]{}}([{[{{{}}([]
+            {<[[]]>}<{[{[{[]{()[[[]
+            [<(<(<(<{}))><([]([]()
+            <{([([[(<>()){}]>(<<{{
+            <{([{{}}[<[[[<>{}]]]>[]]
+            """.data(using: .utf8)!
+        let input = ChallengeInput(data: data)
+
+        let result = try await Challenges2021.runDay10(input: input)
+        XCTAssertEqual(result.part1, "26397")
+        XCTAssertEqual(result.part2, "288957")
+    }
+
 }
