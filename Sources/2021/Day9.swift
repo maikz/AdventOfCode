@@ -1,64 +1,31 @@
-extension Challenges2021 {
+private typealias HeightMap = Grid<Int>
 
-    private struct HeightMap {
+extension HeightMap {
 
-        struct Point: Hashable {
-            let row, column, value: Int
-        }
-
-
-        private let field: [[Int]]
-
-        init(_ field: [[Int]]) {
-            self.field = field
-        }
-
-        subscript(_ row: Int, _ column: Int) -> Point {
-            get {
-                return Point(row: row, column: column, value: self.field[row][column])
-            }
-        }
-
-        private func getAdjacentPoints(_ row: Int, _ column: Int) -> Set<Point> {
-            var result = Set<Point>()
-            if row > 0 { result.insert(self[row-1, column]) }
-            if column > 0 { result.insert(self[row, column-1]) }
-            if row < field.count-1 { result.insert(self[row+1, column]) }
-            if column < field[row].count-1 { result.insert(self[row, column+1]) }
-
-            return result
-        }
-
-        var lowPoints: [Point] {
-            var lowPoints = [Point]()
-            for row in 0..<self.field.count {
-                for column in 0..<self.field[row].count {
-                    let point = self[row, column]
-                    let adjacent = self.getAdjacentPoints(row, column)
-                    if adjacent.allSatisfy({ $0.value > point.value }) { lowPoints.append(point) }
-                }
-            }
-            return lowPoints
-        }
-
-        func basin(of lowPoint: Point) -> Set<Point> {
-            var basinPoints: Set<Point> = []
-            var newPoints: Set<Point> = [lowPoint]
-            while !newPoints.isEmpty {
-                basinPoints = basinPoints.union(newPoints)
-                newPoints = newPoints.reduce(Set<Point>(), { partialResult, point in
-                    let adjacent = self.getAdjacentPoints(point.row, point.column)
-                    let increasing = adjacent.filter({ $0.value < 9 && $0.value > point.value })
-                    let unseen = increasing.subtracting(basinPoints)
-                    return partialResult.union(unseen)
-                })
-            }
-
-            return basinPoints
-        }
-
-
+    var lowPoints: [Point] {
+        return self.allPoints.filter({ point in self.getDirectNeighbors(point).allSatisfy({ $0.value > point.value }) })
     }
+
+    func basin(of lowPoint: Point) -> Set<Point> {
+        var basinPoints: Set<Point> = []
+        var newPoints: Set<Point> = [lowPoint]
+        while !newPoints.isEmpty {
+            basinPoints = basinPoints.union(newPoints)
+            newPoints = newPoints.reduce(Set<Point>(), { partialResult, point in
+                let adjacent = self.getDirectNeighbors(point)
+                let increasing = adjacent.filter({ $0.value < 9 && $0.value > point.value })
+                let unseen = increasing.subtracting(basinPoints)
+                return partialResult.union(unseen)
+            })
+        }
+
+        return basinPoints
+    }
+
+}
+
+
+extension Challenges2021 {
 
     @discardableResult static func runDay9(input: ChallengeInput) async throws -> ChallengeResult {
         let heightMap = HeightMap(input.lines()!.map({ $0.map({ Int(String($0))! }) }))
