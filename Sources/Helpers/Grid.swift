@@ -41,6 +41,9 @@ struct Grid<Element> {
     var allPoints: [Point] {
         product(0...self.width-1, 0...self.height-1).map { self[$0.0, $0.1] }
     }
+    var allValues: [Element] {
+        self.allPoints.map(\.value)
+    }
 
     func getDirectNeighbors(_ x: Int, _ y: Int) -> Set<Point> {
         var result = Set<Point>()
