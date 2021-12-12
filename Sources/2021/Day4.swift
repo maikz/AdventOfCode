@@ -43,8 +43,8 @@ extension Challenges2021 {
     }
 
 
-    @discardableResult static func runDay4(input: ChallengeInput) async throws -> ChallengeResult {
-        let lines = input.lines()!
+    @discardableResult static func runDay4(input: Input) async throws -> ChallengeResult {
+        let lines = input.lines()
         let drawnNumbers = lines.first!.split(separator: ",").map({ Int(String($0))! })
 
         let allBoardRows = lines.dropFirst().filter({ !$0.isEmpty }).chunks(ofCount: 5).map(Array.init)

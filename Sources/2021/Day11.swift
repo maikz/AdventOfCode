@@ -27,8 +27,8 @@ extension Challenges2021 {
 
     }
 
-    @discardableResult static func runDay11(input: ChallengeInput) async throws -> ChallengeResult {
-        let octopuses = Grid(input.lines()!.map({ $0.map({ Octopus(energy: Int(String($0))!) }) }))
+    @discardableResult static func runDay11(input: Input) async throws -> ChallengeResult {
+        let octopuses = Grid(input.lines().map({ $0.map({ Octopus(energy: Int(String($0))!) }) }))
 
         var flashesAfter100 = 0
         var stepsUntilFullFlash = 0

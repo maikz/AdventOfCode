@@ -5,7 +5,7 @@ import XCTest
 final class AdventOfCode2021Tests: XCTestCase {
 
     func testDay1() async throws {
-        let data = """
+        let input = TestInput(string: """
             199
             200
             208
@@ -16,32 +16,28 @@ final class AdventOfCode2021Tests: XCTestCase {
             269
             260
             263
-            """.data(using: .utf8)!
-        let input = ChallengeInput(data: data)
-
+            """)
         let result = try await Challenges2021.runDay1(input: input)
         XCTAssertEqual(result.part1, "7")
         XCTAssertEqual(result.part2, "5")
     }
 
     func testDay2() async throws {
-        let data = """
+        let input = TestInput(string: """
             forward 5
             down 5
             forward 8
             up 3
             down 8
             forward 2
-            """.data(using: .utf8)!
-        let input = ChallengeInput(data: data)
-
+            """)
         let result = try await Challenges2021.runDay2(input: input)
         XCTAssertEqual(result.part1, "150")
         XCTAssertEqual(result.part2, "900")
     }
 
     func testDay3() async throws {
-        let data = """
+        let input = TestInput(string: """
             00100
             11110
             10110
@@ -54,16 +50,14 @@ final class AdventOfCode2021Tests: XCTestCase {
             11001
             00010
             01010
-            """.data(using: .utf8)!
-        let input = ChallengeInput(data: data)
-
+            """)
         let result = try await Challenges2021.runDay3(input: input)
         XCTAssertEqual(result.part1, "198")
         XCTAssertEqual(result.part2, "230")
     }
 
     func testDay4() async throws {
-        let data = """
+        let input = TestInput(string: """
             7,4,9,5,11,17,23,2,0,14,21,24,10,16,13,6,15,25,12,22,18,20,8,19,3,26,1
 
             22 13 17 11  0
@@ -83,16 +77,14 @@ final class AdventOfCode2021Tests: XCTestCase {
             18  8 23 26 20
             22 11 13  6  5
              2  0 12  3  7
-            """.data(using: .utf8)!
-        let input = ChallengeInput(data: data)
-
+            """)
         let result = try await Challenges2021.runDay4(input: input)
         XCTAssertEqual(result.part1, "4512")
         XCTAssertEqual(result.part2, "1924")
     }
 
     func testDay5() async throws {
-        let data = """
+        let input = TestInput(string: """
             0,9 -> 5,9
             8,0 -> 0,8
             9,4 -> 3,4
@@ -103,34 +95,28 @@ final class AdventOfCode2021Tests: XCTestCase {
             3,4 -> 1,4
             0,0 -> 8,8
             5,5 -> 8,2
-            """.data(using: .utf8)!
-        let input = ChallengeInput(data: data)
-
+            """)
         let result = try await Challenges2021.runDay5(input: input)
         XCTAssertEqual(result.part1, "5")
         XCTAssertEqual(result.part2, "12")
     }
 
     func testDay6() async throws {
-        let data = "3,4,3,1,2".data(using: .utf8)!
-        let input = ChallengeInput(data: data)
-
+        let input = TestInput(string: "3,4,3,1,2")
         let result = try await Challenges2021.runDay6(input: input)
         XCTAssertEqual(result.part1, "5934")
         XCTAssertEqual(result.part2, "26984457539")
     }
 
     func testDay7() async throws {
-        let data = "16,1,2,0,4,2,7,1,2,14".data(using: .utf8)!
-        let input = ChallengeInput(data: data)
-
+        let input = TestInput(string: "16,1,2,0,4,2,7,1,2,14")
         let result = try await Challenges2021.runDay7(input: input)
         XCTAssertEqual(result.part1, "37")
         XCTAssertEqual(result.part2, "168")
     }
 
     func testDay8() async throws {
-        let data = """
+        let input = TestInput(string: """
             be cfbegad cbdgef fgaecd cgeb fdcge agebfd fecdb fabcd edb | fdgacbe cefdb cefbgd gcbe
             edbfga begcd cbg gc gcadebf fbgde acbgfd abcde gfcbed gfec | fcgedb cgb dgebacf gc
             fgaebd cg bdaec gdafb agbcfd gdcbef bgcad gfac gcb cdgabef | cg cg fdcagb cbg
@@ -141,31 +127,27 @@ final class AdventOfCode2021Tests: XCTestCase {
             bdfegc cbegaf gecbf dfcage bdacg ed bedf ced adcbefg gebcd | ed bcgafe cdgba cbgef
             egadfb cdbfeg cegd fecab cgb gbdefca cg fgcdab egfdb bfceg | gbdfcae bgc cg cgb
             gcafb gcf dcaebfg ecagb gf abcdeg gaef cafbge fdbac fegbdc | fgae cfgab fg bagce
-            """.data(using: .utf8)!
-        let input = ChallengeInput(data: data)
-
+            """)
         let result = try await Challenges2021.runDay8(input: input)
         XCTAssertEqual(result.part1, "26")
         XCTAssertEqual(result.part2, "61229")
     }
 
     func testDay9() async throws {
-        let data = """
+        let input = TestInput(string: """
             2199943210
             3987894921
             9856789892
             8767896789
             9899965678
-            """.data(using: .utf8)!
-        let input = ChallengeInput(data: data)
-
+            """)
         let result = try await Challenges2021.runDay9(input: input)
         XCTAssertEqual(result.part1, "15")
         XCTAssertEqual(result.part2, "1134")
     }
 
     func testDay10() async throws {
-        let data = """
+        let input = TestInput(string: """
             [({(<(())[]>[[{[]{<()<>>
             [(()[<>])]({[<{<<[]>>(
             {([(<{}[<>[]}>{[]{[(<()>
@@ -176,16 +158,14 @@ final class AdventOfCode2021Tests: XCTestCase {
             [<(<(<(<{}))><([]([]()
             <{([([[(<>()){}]>(<<{{
             <{([{{}}[<[[[<>{}]]]>[]]
-            """.data(using: .utf8)!
-        let input = ChallengeInput(data: data)
-
+            """)
         let result = try await Challenges2021.runDay10(input: input)
         XCTAssertEqual(result.part1, "26397")
         XCTAssertEqual(result.part2, "288957")
     }
 
     func testDay11() async throws {
-        let data = """
+        let input = TestInput(string: """
             5483143223
             2745854711
             5264556173
@@ -196,16 +176,14 @@ final class AdventOfCode2021Tests: XCTestCase {
             6882881134
             4846848554
             5283751526
-            """.data(using: .utf8)!
-        let input = ChallengeInput(data: data)
-
+            """)
         let result = try await Challenges2021.runDay11(input: input)
         XCTAssertEqual(result.part1, "1656")
         XCTAssertEqual(result.part2, "195")
     }
 
     func testDay12() async throws {
-        let data1 = """
+        let input1 = TestInput(string: """
             start-A
             start-b
             A-c
@@ -213,14 +191,12 @@ final class AdventOfCode2021Tests: XCTestCase {
             b-d
             A-end
             b-end
-            """.data(using: .utf8)!
-        let input1 = ChallengeInput(data: data1)
-
+            """)
         let result1 = try await Challenges2021.runDay12(input: input1)
         XCTAssertEqual(result1.part1, "10")
         XCTAssertEqual(result1.part2, "36")
 
-        let data2 = """
+        let input2 = TestInput(string: """
             dc-end
             HN-start
             start-kj
@@ -231,14 +207,12 @@ final class AdventOfCode2021Tests: XCTestCase {
             kj-sa
             kj-HN
             kj-dc
-            """.data(using: .utf8)!
-        let input2 = ChallengeInput(data: data2)
-
+            """)
         let result2 = try await Challenges2021.runDay12(input: input2)
         XCTAssertEqual(result2.part1, "19")
         XCTAssertEqual(result2.part2, "103")
 
-        let data3 = """
+        let input3 = TestInput(string: """
             fs-end
             he-DX
             fs-he
@@ -257,9 +231,7 @@ final class AdventOfCode2021Tests: XCTestCase {
             zg-he
             pj-fs
             start-RW
-            """.data(using: .utf8)!
-        let input3 = ChallengeInput(data: data3)
-
+            """)
         let result3 = try await Challenges2021.runDay12(input: input3)
         XCTAssertEqual(result3.part1, "226")
         XCTAssertEqual(result3.part2, "3509")

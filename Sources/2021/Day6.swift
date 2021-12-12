@@ -49,9 +49,9 @@ extension Challenges2021 {
         return currentFishes.reduce(0, { $0 + $1.count })
     }
 
-    @discardableResult static func runDay6(input: ChallengeInput) async throws -> ChallengeResult {
+    @discardableResult static func runDay6(input: Input) async throws -> ChallengeResult {
         // parse "fishes" and group them by there inner timer
-        let rawFishes = input.lines()!.first!.split(separator: ",").map({ Int(String($0))! }).reduce(into: [:]) { result, timer in
+        let rawFishes = input.lines().first!.split(separator: ",").map({ Int(String($0))! }).reduce(into: [:]) { result, timer in
             result[timer, default: 0] += 1
         }
         let fishes = rawFishes.map({ Swarm(timer: $0.key, count: $0.value) })

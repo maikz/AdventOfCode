@@ -74,8 +74,8 @@ extension Challenges2021 {
 
     }
 
-    @discardableResult static func runDay12(input: ChallengeInput) async throws -> ChallengeResult {
-        let startCave = Cave.buildNetwork(from: input.lines()!)
+    @discardableResult static func runDay12(input: Input) async throws -> ChallengeResult {
+        let startCave = Cave.buildNetwork(from: input.lines())
 
 
         // Part 1

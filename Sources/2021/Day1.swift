@@ -3,8 +3,8 @@ import Algorithms
 
 extension Challenges2021 {
 
-    @discardableResult static func runDay1(input: ChallengeInput) async throws -> ChallengeResult {
-        let lines = input.lines()!.compactMap(UInt.init)
+    @discardableResult static func runDay1(input: Input) async throws -> ChallengeResult {
+        let lines = input.lines().compactMap(UInt.init)
 
         let numDeclines1 = self.countSlopes(in: lines, windowSize: 1)
         print("Part 1: There are \(numDeclines1) declining slopes ahead.")

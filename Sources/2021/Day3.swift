@@ -1,7 +1,7 @@
 extension Challenges2021 {
 
-    @discardableResult static func runDay3(input: ChallengeInput) async throws -> ChallengeResult {
-        let linesAsNumbers = input.lines()!.map({ String($0).map({ Int(String($0))! }) })
+    @discardableResult static func runDay3(input: Input) async throws -> ChallengeResult {
+        let linesAsNumbers = input.lines().map({ String($0).map({ Int(String($0))! }) })
 
         let sums = linesAsNumbers.dropFirst().reduce(linesAsNumbers.first!) { result, next -> [Int] in
             return zip(result, next).map({ $0.0 + $0.1 })

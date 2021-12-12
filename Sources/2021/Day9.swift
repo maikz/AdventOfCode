@@ -27,8 +27,8 @@ extension HeightMap {
 
 extension Challenges2021 {
 
-    @discardableResult static func runDay9(input: ChallengeInput) async throws -> ChallengeResult {
-        let heightMap = HeightMap(input.lines()!.map({ $0.map({ Int(String($0))! }) }))
+    @discardableResult static func runDay9(input: Input) async throws -> ChallengeResult {
+        let heightMap = HeightMap(input.lines().map({ $0.map({ Int(String($0))! }) }))
 
 
         // Part 1

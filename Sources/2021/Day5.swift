@@ -76,8 +76,8 @@ extension Challenges2021 {
     }
 
 
-    @discardableResult static func runDay5(input: ChallengeInput) async throws -> ChallengeResult {
-        let lines = input.lines()!.map(Line.init)
+    @discardableResult static func runDay5(input: Input) async throws -> ChallengeResult {
+        let lines = input.lines().map(Line.init)
 
 
         // Part 1

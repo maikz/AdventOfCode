@@ -19,8 +19,8 @@ extension Challenges2021 {
         })!
     }
 
-    @discardableResult static func runDay8(input: ChallengeInput) async throws -> ChallengeResult {
-        let lines = input.lines()!
+    @discardableResult static func runDay8(input: Input) async throws -> ChallengeResult {
+        let lines = input.lines()
         let notes = lines.map { line -> (patterns: [String], output: [String]) in
             let parts = line.replacingOccurrences(of: " | ", with: "|").split(separator: "|")
             let uniquePatterns = parts.first!.split(separator: " ").map(String.init)

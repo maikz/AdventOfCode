@@ -1,7 +1,7 @@
 extension Challenges2021 {
 
-    @discardableResult static func runDay7(input: ChallengeInput) async throws -> ChallengeResult {
-        let crabs = input.lines()!.first!.split(separator: ",").map({ Int(String($0))! })
+    @discardableResult static func runDay7(input: Input) async throws -> ChallengeResult {
+        let crabs = input.lines().first!.split(separator: ",").map({ Int(String($0))! })
 
 
         // Part 1

@@ -26,8 +26,8 @@ extension Challenges2021 {
         return String(openingBraces.reversed().map(\.matchingClosingBrace))
     }
 
-    @discardableResult static func runDay10(input: ChallengeInput) async throws -> ChallengeResult {
-        let lines = input.lines()!
+    @discardableResult static func runDay10(input: Input) async throws -> ChallengeResult {
+        let lines = input.lines()
 
 
         // Part 1

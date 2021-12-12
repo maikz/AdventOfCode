@@ -1,8 +1,30 @@
 import Foundation
 
 
+/// Provides input for one day of the challenges.
+protocol Input {
+    func asString() -> String
+    func lines() -> [String]
+}
+
+extension Input {
+    func lines() -> [String] {
+        return self.asString().split(separator: "\n").map(String.init)
+    }
+}
+
+/// Helper type for test input provided in the challenge text as example.
+struct TestInput: Input {
+    let string: String
+
+    func asString() -> String {
+        self.string
+    }
+}
+
+
 /// Helper type for fetching the personalized puzzle input from the server.
-struct ChallengeInput {
+struct ChallengeInput: Input {
 
     let data: Data
 
@@ -34,12 +56,8 @@ struct ChallengeInput {
         self.data = data
     }
 
-    func asString() -> String? {
-        return String(data: self.data, encoding: .utf8)
-    }
-
-    func lines() -> [String]? {
-        return self.asString()?.split(separator: "\n").map(String.init)
+    func asString() -> String {
+        return String(data: self.data, encoding: .utf8)!
     }
 
 }

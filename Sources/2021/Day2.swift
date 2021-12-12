@@ -33,10 +33,8 @@ extension Challenges2021 {
     }
 
 
-    @discardableResult static func runDay2(input: ChallengeInput) async throws -> ChallengeResult {
-        guard let instructions = input.lines()?.compactMap(Instruction.init) else {
-            throw AdventOfCode.RuntimeError.parsingError
-        }
+    @discardableResult static func runDay2(input: Input) async throws -> ChallengeResult {
+        let instructions = input.lines().compactMap(Instruction.init)
 
         var horizontal = 0, depth = 0
         for instruction in instructions {
