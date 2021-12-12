@@ -4,7 +4,7 @@ import Foundation
 /// Provides input for one day of the challenges.
 protocol Input {
     func asString() -> String?
-    func lines() -> LazyMapSequence<LazySequence<[String.SubSequence]>.Elements, String>?
+    func lines() -> [String]?
 }
 
 extension Input {
