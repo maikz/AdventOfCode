@@ -1,8 +1,30 @@
 import Foundation
 
 
+/// Provides input for one day of the challenges.
+protocol Input {
+    func asString() -> String?
+    func lines() -> LazyMapSequence<LazySequence<[String.SubSequence]>.Elements, String>?
+}
+
+extension Input {
+    func lines() -> LazyMapSequence<LazySequence<[String.SubSequence]>.Elements, String>? {
+        return self.asString()?.split(separator: "\n").lazy.map(String.init)
+    }
+}
+
+/// Helper type for test input provided in the challenge text as example.
+struct TestInput: Input {
+    let string: String
+
+    func asString() -> String? {
+        self.string
+    }
+}
+
+
 /// Helper type for fetching the personalized puzzle input from the server.
-struct ChallengeInput {
+struct ChallengeInput: Input {
 
     let data: Data
 
@@ -30,10 +52,6 @@ struct ChallengeInput {
 
     func asString() -> String? {
         return String(data: self.data, encoding: .utf8)
-    }
-
-    func lines() -> LazyMapSequence<LazySequence<[String.SubSequence]>.Elements, String>? {
-        return self.asString()?.split(separator: "\n").lazy.map(String.init)
     }
 
 }
