@@ -3,13 +3,13 @@ import Foundation
 
 /// Provides input for one day of the challenges.
 protocol Input {
-    func asString() -> String?
-    func lines() -> [String]?
+    func asString() -> String
+    func lines() -> [String]
 }
 
 extension Input {
-    func lines() -> [String]? {
-        return self.asString()?.split(separator: "\n").map(String.init)
+    func lines() -> [String] {
+        return self.asString().split(separator: "\n").map(String.init)
     }
 }
 
@@ -17,7 +17,7 @@ extension Input {
 struct TestInput: Input {
     let string: String
 
-    func asString() -> String? {
+    func asString() -> String {
         self.string
     }
 }
@@ -56,8 +56,8 @@ struct ChallengeInput: Input {
         self.data = data
     }
 
-    func asString() -> String? {
-        return String(data: self.data, encoding: .utf8)
+    func asString() -> String {
+        return String(data: self.data, encoding: .utf8)!
     }
 
 }

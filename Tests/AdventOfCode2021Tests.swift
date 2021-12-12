@@ -16,9 +16,7 @@ final class AdventOfCode2021Tests: XCTestCase {
             269
             260
             263
-            """
-        )
-
+            """)
         let result = try await Challenges2021.runDay1(input: input)
         XCTAssertEqual(result.part1, "7")
         XCTAssertEqual(result.part2, "5")
