@@ -3,13 +3,33 @@ import Algorithms
 
 extension Challenges2021 {
 
-    private static func addInsertions(for pair: String, to counts: inout [Character: Int], rules: [String: Character], remainingSteps: Int) {
-        if remainingSteps == 0 { return }
+    private struct CacheKey: Hashable {
+        let pair: String, remainingSteps: Int
+        init(_ pair: String, _ remainingSteps: Int) {
+            self.pair = pair; self.remainingSteps = remainingSteps
+        }
+    }
+    private typealias CharacterCounts = [Character: Int]
+
+    private static var resultCache = [CacheKey: CharacterCounts]()
+
+
+    private static func getInsertions(for pair: String, rules: [String: Character], remainingSteps: Int) -> CharacterCounts {
+        if remainingSteps == 0 { return [:] }
+
+        if let cached = self.resultCache[CacheKey(pair, remainingSteps)] { return cached }
+
         let newChar = rules[pair]!
-        counts[newChar, default: 0] += 1
+
         let newPair1 = String([pair.first!, newChar]), newPair2 = String([newChar, pair.last!])
-        addInsertions(for: newPair1, to: &counts, rules: rules, remainingSteps: remainingSteps - 1)
-        addInsertions(for: newPair2, to: &counts, rules: rules, remainingSteps: remainingSteps - 1)
+        let pair1Result = getInsertions(for: newPair1, rules: rules, remainingSteps: remainingSteps - 1)
+        let pair2Result = getInsertions(for: newPair2, rules: rules, remainingSteps: remainingSteps - 1)
+        var result = pair1Result.merging(other: pair2Result)
+        result[newChar, default: 0] += 1
+
+        self.resultCache[CacheKey(pair, remainingSteps)] = result
+
+        return result
     }
 
     private static func getResult(for template: String, rules: [String: Character], steps: Int) -> Int {
@@ -18,7 +38,7 @@ extension Challenges2021 {
         }
         let initialPairs = template.adjacentPairs().map({ String([$0.0, $0.1]) })
         for pair in initialPairs {
-            self.addInsertions(for: pair, to: &counts, rules: rules, remainingSteps: steps)
+            counts = counts.merging(other: self.getInsertions(for: pair, rules: rules, remainingSteps: steps))
         }
 
         let minMax = counts.minAndMax(by: { $0.value < $1.value })!
@@ -42,12 +62,24 @@ extension Challenges2021 {
 
         // Part 2
 
-        let result2 = "?"
-//        let result2 = self.getResult(for: template, rules: rules, steps: 40)
-//        print("Part 2: The quantity of the most common element subtracting the quantity of the least common element after 40 steps is \(result2)")
+        let result2 = self.getResult(for: template, rules: rules, steps: 40)
+        print("Part 2: The quantity of the most common element subtracting the quantity of the least common element after 40 steps is \(result2)")
 
 
         return (part1: "\(result1)", part2: "\(result2)")
+    }
+
+}
+
+
+private extension Dictionary where Key == Character, Value == Int {
+
+    func merging(other: Self) -> Self {
+        self.reduce(other) { partialResult, new in
+            var result = partialResult
+            result[new.key, default: 0] += new.value
+            return result
+        }
     }
 
 }
