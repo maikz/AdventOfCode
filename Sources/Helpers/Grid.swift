@@ -16,7 +16,7 @@ struct Grid<Element> {
         }
     }
 
-    private var elements: [[Element]]
+    var elements: [[Element]]
 
     var width: Int {
         return self.elements.first?.count ?? 0
