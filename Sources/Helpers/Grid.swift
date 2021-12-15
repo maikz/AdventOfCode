@@ -76,3 +76,11 @@ struct Grid<Element> {
     }
 
 }
+
+extension Grid: CustomStringConvertible where Element: CustomStringConvertible {
+
+    var description: String {
+        self.elements.map({ $0.map(\.description).joined() }).joined(separator: "\n")
+    }
+
+}
