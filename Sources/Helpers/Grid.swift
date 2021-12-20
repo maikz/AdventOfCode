@@ -95,6 +95,10 @@ struct Grid<Element> {
         return Grid(Array(croppedRows[croppedRange]), padding: self.padding)
     }
 
+    func withPadding(_ padding: Element) -> Self {
+        return Grid(self.elements, padding: padding)
+    }
+
     func map(_ block: (Point) -> Element) -> Self {
         let mappedElements = self.elements.enumerated().map { y, row in
             row.enumerated().map { x, value in

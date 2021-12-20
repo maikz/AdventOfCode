@@ -7,6 +7,19 @@ extension Challenges2021 {
         "#": "1",
     ]
 
+    private static func applyConvolution(to image: Image, with map: [Character]) -> Image {
+        let newImage = image.applyingConvolution { area in
+            let valueString = String(area.map(\.value).map({ valueMapping[$0]! }))
+            let value = Int(valueString, radix: 2)!
+            return map[value]
+        }
+        // make sure to switch between "black" and "white" in the padded area if the
+        // mapping demands it (using the mapping value for "black" or for "white")
+        let newPaddingIndex = newImage.padding == "." ? 0 : 511
+        let newPadding = map[newPaddingIndex]
+        return newImage.withPadding(newPadding)
+    }
+
     @discardableResult static func runDay20(input: Input) async throws -> ChallengeResult {
         let lines = input.lines()
         let map = Array(lines.first!)
@@ -18,11 +31,7 @@ extension Challenges2021 {
 
         var newImage = image
         for _ in 1...2 {
-            newImage = newImage.applyingConvolution { area in
-                let valueString = String(area.map(\.value).map({ valueMapping[$0]! }))
-                let value = Int(valueString, radix: 2)!
-                return map[value]
-            }
+            newImage = self.applyConvolution(to: newImage, with: map)
         }
         let count1 = newImage.allValues.filter({ $0 == "#" }).count
 
@@ -32,11 +41,7 @@ extension Challenges2021 {
         // Part 2
 
         for _ in 3...50 {
-            newImage = newImage.applyingConvolution { area in
-                let valueString = String(area.map(\.value).map({ valueMapping[$0]! }))
-                let value = Int(valueString, radix: 2)!
-                return map[value]
-            }
+            newImage = self.applyConvolution(to: newImage, with: map)
         }
         let count2 = newImage.allValues.filter({ $0 == "#" }).count
 
