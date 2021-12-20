@@ -18,6 +18,8 @@ struct Grid<Element> {
 
     var elements: [[Element]]
 
+    let padding: Element?
+
     var width: Int {
         return self.elements.first?.count ?? 0
     }
@@ -25,33 +27,36 @@ struct Grid<Element> {
         return self.elements.count
     }
 
-    init(_ elements: [[Element]]) {
+    init(_ elements: [[Element]], padding: Element? = nil) {
         self.elements = elements
+        self.padding = padding
     }
 
-    subscript(_ x: Int, _ y: Int) -> Point {
+    subscript(_ x: Int, _ y: Int) -> Point? {
+        guard self.elements.indices.contains(y), self.elements[0].indices.contains(x) else {
+            return self.padding.map({ Point(x: x, y: y, value: $0) }) ?? nil
+        }
         return Point(x: x, y: y, value: self.elements[y][x])
     }
 
-    subscript(_ x: Int, _ y: Int) -> Element {
-        get { return self.elements[y][x] }
-        set { self.elements[y][x] = newValue }
+    subscript(_ x: Int, _ y: Int) -> Element? {
+        return self[x, y]?.value
     }
 
     var allPoints: [Point] {
-        product(0...self.width-1, 0...self.height-1).map { self[$0.0, $0.1] }
+        product(0...self.width-1, 0...self.height-1).compactMap { self[$0.0, $0.1] }
     }
     var allValues: [Element] {
         self.allPoints.map(\.value)
     }
 
     func getDirectNeighbors(_ x: Int, _ y: Int) -> Set<Point> {
-        var result = Set<Point>()
-        if x > 0 { result.insert(self[x-1, y]) }
-        if y > 0 { result.insert(self[x, y-1]) }
-        if x < self.width-1 { result.insert(self[x+1, y]) }
-        if y < self.height-1 { result.insert(self[x, y+1]) }
-        return result
+        return Set<Point>([
+            self[x-1, y],
+            self[x, y-1],
+            self[x+1, y],
+            self[x, y+1],
+        ].compacted())
     }
 
     func getDirectNeighbors(_ point: Point) -> Set<Point> {
@@ -59,16 +64,14 @@ struct Grid<Element> {
     }
 
     func getNeighbors(_ x: Int, _ y: Int) -> Set<Point> {
-        let xRange = Swift.max(0, x-1)...Swift.min(self.width-1, x+1)
-        let yRange = Swift.max(0, y-1)...Swift.min(self.height-1, y+1)
-        var result = Set<Point>()
-        for currentX in xRange {
-            for currentY in yRange {
+        var result = [Point?]()
+        for currentX in x-1...x+1 {
+            for currentY in y-1...y+1 {
                 if currentX == x, currentY == y { continue }
-                result.insert(self[currentX, currentY])
+                result.append(self[currentX, currentY])
             }
         }
-        return result
+        return Set(result.compacted())
     }
 
     func getNeighbors(_ point: Point) -> Set<Point> {
