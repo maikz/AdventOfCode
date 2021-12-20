@@ -78,6 +78,37 @@ struct Grid<Element> {
         return self.getNeighbors(point.x, point.y, includeCenter: includeCenter)
     }
 
+    func padded(by padding: Int = 1) -> Self {
+        guard let paddingElement = self.padding else { return self }
+
+        let paddingPerRow = Array(repeating: paddingElement, count: padding)
+        let paddingRow = Array(repeating: paddingElement, count: self.width + 2 * padding)
+        let paddingRows = Array(repeating: paddingRow, count: padding)
+        let paddedRows = self.elements.map({ paddingPerRow + $0 + paddingPerRow })
+        let newElement = paddingRows + paddedRows + paddingRows
+        return Grid(newElement, padding: self.padding)
+    }
+
+    func cropped(by amount: Int) -> Self {
+        let croppedRange = amount...(self.width - 2 * amount)
+        let croppedRows = self.elements.map({ Array($0[croppedRange]) })
+        return Grid(Array(croppedRows[croppedRange]), padding: self.padding)
+    }
+
+    func map(_ block: (Point) -> Element) -> Self {
+        let mappedElements = self.elements.enumerated().map { y, row in
+            row.enumerated().map { x, value in
+                return block(Point(x: x, y: y, value: value))
+            }
+        }
+        return Grid(mappedElements, padding: self.padding)
+    }
+
+    func applyingConvolution(_ block: ([Point]) -> Element) -> Self {
+        let padded = self.padded()
+        return padded.map({ block(padded.getNeighbors($0, includeCenter: true)) })
+    }
+
 }
 
 extension Grid: CustomStringConvertible where Element: CustomStringConvertible {
