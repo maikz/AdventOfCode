@@ -63,19 +63,19 @@ struct Grid<Element> {
         return self.getDirectNeighbors(point.x, point.y)
     }
 
-    func getNeighbors(_ x: Int, _ y: Int) -> Set<Point> {
+    func getNeighbors(_ x: Int, _ y: Int, includeCenter: Bool = false) -> [Point] {
         var result = [Point?]()
-        for currentX in x-1...x+1 {
-            for currentY in y-1...y+1 {
-                if currentX == x, currentY == y { continue }
+        for currentY in y-1...y+1 {
+            for currentX in x-1...x+1 {
+                if !includeCenter, currentX == x, currentY == y { continue }
                 result.append(self[currentX, currentY])
             }
         }
-        return Set(result.compacted())
+        return result.compactMap({ $0 })
     }
 
-    func getNeighbors(_ point: Point) -> Set<Point> {
-        return self.getNeighbors(point.x, point.y)
+    func getNeighbors(_ point: Point, includeCenter: Bool = false) -> [Point] {
+        return self.getNeighbors(point.x, point.y, includeCenter: includeCenter)
     }
 
 }
