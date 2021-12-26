@@ -40,7 +40,8 @@ struct Grid<Element> {
     }
 
     subscript(_ x: Int, _ y: Int) -> Element? {
-        return self[x, y]?.value
+        get { self[x, y]?.value }
+        set { if let newValue = newValue { self.elements[y][x] = newValue } }
     }
 
     var allPoints: [Point] {

@@ -389,4 +389,20 @@ final class AdventOfCode2021Tests: XCTestCase {
         XCTAssertEqual(result1.part2, "2758514936282235")
     }
 
+    func testDay25() async throws {
+        let input = TestInput(string: """
+            v...>>.vv>
+            .vv>>.vv..
+            >>.>v>...v
+            >>v>>.>.v.
+            v>v.vv.v..
+            >.>>..v...
+            .vv..>.>v.
+            v.v..>>v.v
+            ....v..v.>
+            """)
+        let result = try await Challenges2021.runDay25(input: input)
+        XCTAssertEqual(result.part1, "58")
+    }
+
 }
