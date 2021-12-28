@@ -317,6 +317,68 @@ final class AdventOfCode2021Tests: XCTestCase {
         XCTAssertEqual(result.part2, "315")
     }
 
+    func testDay16() async throws {
+        let input1 = TestInput(string: "D2FE28")
+        let result1 = try await Challenges2021.runDay16(input: input1)
+        XCTAssertEqual(result1.part1, "6")
+
+        let input2 = TestInput(string: "38006F45291200")
+        let result2 = try await Challenges2021.runDay16(input: input2)
+        XCTAssertEqual(result2.part1, "9")
+
+        let input3 = TestInput(string: "EE00D40C823060")
+        let result3 = try await Challenges2021.runDay16(input: input3)
+        XCTAssertEqual(result3.part1, "14")
+
+        let input4 = TestInput(string: "8A004A801A8002F478")
+        let result4 = try await Challenges2021.runDay16(input: input4)
+        XCTAssertEqual(result4.part1, "16")
+
+        let input5 = TestInput(string: "620080001611562C8802118E34")
+        let result5 = try await Challenges2021.runDay16(input: input5)
+        XCTAssertEqual(result5.part1, "12")
+
+        let input6 = TestInput(string: "C0015000016115A2E0802F182340")
+        let result6 = try await Challenges2021.runDay16(input: input6)
+        XCTAssertEqual(result6.part1, "23")
+
+        let input7 = TestInput(string: "A0016C880162017C3686B18A3D4780")
+        let result7 = try await Challenges2021.runDay16(input: input7)
+        XCTAssertEqual(result7.part1, "31")
+
+        let input8 = TestInput(string: "C200B40A82")
+        let result8 = try await Challenges2021.runDay16(input: input8)
+        XCTAssertEqual(result8.part2, "3")
+
+        let input9 = TestInput(string: "04005AC33890")
+        let result9 = try await Challenges2021.runDay16(input: input9)
+        XCTAssertEqual(result9.part2, "54")
+
+        let input10 = TestInput(string: "880086C3E88112")
+        let result10 = try await Challenges2021.runDay16(input: input10)
+        XCTAssertEqual(result10.part2, "7")
+
+        let input11 = TestInput(string: "CE00C43D881120")
+        let result11 = try await Challenges2021.runDay16(input: input11)
+        XCTAssertEqual(result11.part2, "9")
+
+        let input12 = TestInput(string: "D8005AC2A8F0")
+        let result12 = try await Challenges2021.runDay16(input: input12)
+        XCTAssertEqual(result12.part2, "1")
+
+        let input13 = TestInput(string: "F600BC2D8F")
+        let result13 = try await Challenges2021.runDay16(input: input13)
+        XCTAssertEqual(result13.part2, "0")
+
+        let input14 = TestInput(string: "9C005AC2F8F0")
+        let result14 = try await Challenges2021.runDay16(input: input14)
+        XCTAssertEqual(result14.part2, "0")
+
+        let input15 = TestInput(string: "9C0141080250320F1802104A08")
+        let result15 = try await Challenges2021.runDay16(input: input15)
+        XCTAssertEqual(result15.part2, "1")
+    }
+
     func testDay17() async throws {
         let input = TestInput(string: "target area: x=20..30, y=-10..-5")
         let result = try await Challenges2021.runDay17(input: input)
