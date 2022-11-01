@@ -34,6 +34,7 @@ struct AdventOfCode: ParsableCommand {
                     case 2019: try await Challenges2019.run(day: day, input: input)
                     case 2020: try await Challenges2020.run(day: day, input: input)
                     case 2021: try await Challenges2021.run(day: day, input: input)
+                    case 2022: try await Challenges2022.run(day: day, input: input)
                     default: throw ValidationError("No challenges available for this year.")
                 }
             } catch {

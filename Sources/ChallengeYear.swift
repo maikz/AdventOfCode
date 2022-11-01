@@ -47,6 +47,7 @@ enum Challenges2018: ChallengeYear {}
 enum Challenges2019: ChallengeYear {}
 enum Challenges2020: ChallengeYear {}
 enum Challenges2021: ChallengeYear {}
+enum Challenges2022: ChallengeYear {}
 
 
 // Some default implementations that are used when a challenge is not yet implemented.
