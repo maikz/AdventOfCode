@@ -14,7 +14,16 @@ extension Input {
 }
 
 /// Helper type for test input provided in the challenge text as example.
-struct TestInput: Input {
+struct TestInput: Input, ExpressibleByStringLiteral {
+    init(stringLiteral value: String) {
+        self.string = value
+    }
+
+    @available(*, deprecated, message: "Use a string literal instead")
+    init(string: String) {
+        self.string = string
+    }
+
     let string: String
 
     func asString() -> String {
